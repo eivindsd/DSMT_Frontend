@@ -5,6 +5,8 @@ import { Toolbar } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -16,12 +18,12 @@ const Header = () => {
                 <AppBar position="static" >
                     <Toolbar>
                         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            <Link to={`/`} style={{ textDecoration: 'none', color: 'white' }}>ChatApp</Link>
+                            <ChatBubbleIcon/> ChatApp
                         </Typography>
                         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                            username: {userName}
                         </Typography>
-                        <Button color="inherit" onClick={() => {setIsLoggedIn(false)}}><Link to={`/`} style={{ textDecoration: 'none', color: 'white' }}>Logout</Link></Button>
+                        <Button color="inherit" onClick={() => {setIsLoggedIn(false)}}><Link to={`/`} style={{ textDecoration: 'none', color: 'white' }}>Logout <ExitToAppIcon/></Link></Button>
                     </Toolbar>
                 </AppBar>
             </Box>
