@@ -9,10 +9,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-import ChatPage from "../ChatComponent/ChatPage";
+import ChatPage from "../ChatComponents/ChatPage";
 import { LoggedInContext } from "../LoggedInContext";
 import { Alert } from '@mui/material';
-
 
 const theme = createTheme();
 
@@ -20,7 +19,6 @@ const Login = () => {
 
     const [name, setName] = useState<string>("");
     const [missingName, setMissingName] = useState(false);
-
     const { isLoggedIn, setIsLoggedIn, setUserName } = React.useContext(LoggedInContext);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -30,7 +28,9 @@ const Login = () => {
             setUserName(name); 
             setMissingName(false);
         }
-        setMissingName(true);
+        else {
+          setMissingName(true);
+        }
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +72,7 @@ const Login = () => {
                 onChange={handleNameChange}
               />
               { missingName && (
-                <Alert severity="error">Insert username</Alert>
+                <Alert severity="error">Insert username &#128100;</Alert>
               )}
               <Button
                 type="submit"
@@ -80,7 +80,7 @@ const Login = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Log in
+                Log in &#128406;
               </Button>
             </Box>
           </Box>
