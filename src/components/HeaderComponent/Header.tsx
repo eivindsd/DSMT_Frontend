@@ -17,13 +17,21 @@ const Header = () => {
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static" >
                     <Toolbar>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                            <ChatBubbleIcon/> ChatApp
+                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }} style={{fontFamily: "'Sacramento', cursive"}}>
+                             <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>ChatApp</Link>
                         </Typography>
                         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-                           username: {userName}
+                            &#128123; - {userName}
                         </Typography>
-                        <Button color="inherit" onClick={() => {setIsLoggedIn(false)}}><Link to={`/`} style={{ textDecoration: 'none', color: 'white' }}>Logout <ExitToAppIcon/></Link></Button>
+                        <Button 
+                            color="inherit" 
+                            onClick={() => {setIsLoggedIn(false)}}>
+                                <Link 
+                                    to={`/`} 
+                                    style={{ textDecoration: 'none', color: 'white', fontFamily: "'Orbitron', sans-serif" }}>
+                                        Logout &#128405;
+                                </Link>
+                        </Button>
                     </Toolbar>
                 </AppBar>
             </Box>
