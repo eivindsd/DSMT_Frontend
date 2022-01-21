@@ -1,10 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import Header from '../HeaderComponent/Header';
-import { Button, Typography } from '@mui/material';
+import { Button} from '@mui/material';
 import { Link } from 'react-router-dom';
 import Quote from '../QuoteComponent/Quote';
 import CreateChatRoom from './CreateChatRoom';
 import { LoggedInContext } from '../LoggedInContext';
+import LoveCalculator from "../LoveCalculatorComponent/LoveCalculator";
+import { Divider } from '@material-ui/core';
 
 const ChatPage = () => {
 
@@ -23,7 +25,10 @@ const ChatPage = () => {
             </Button>
             ))}
             <CreateChatRoom />
+            <Divider style={{marginTop: "2vw"}}/>
             <Quote />
+            <Divider style={{marginTop: "2vw"}}/>
+            <LoveCalculator />
         </div>
     );
 };

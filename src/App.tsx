@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {LoggedInContext} from './components/LoggedInContext';
 import Login from './components/LoginComponent/Login';
@@ -22,7 +22,6 @@ function App() {
           <Route path="chatroom/:name" element={<ChatRoom />}/>
         </Routes>
     </BrowserRouter>
-    
   );
 }
 

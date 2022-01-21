@@ -13,14 +13,12 @@ import ChatPage from "../ChatComponents/ChatPage";
 import { LoggedInContext } from "../LoggedInContext";
 import { Alert } from '@mui/material';
 
-
 const theme = createTheme();
 
 const Login = () => {
 
     const [name, setName] = useState<string>("");
     const [missingName, setMissingName] = useState(false);
-
     const { isLoggedIn, setIsLoggedIn, setUserName } = React.useContext(LoggedInContext);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

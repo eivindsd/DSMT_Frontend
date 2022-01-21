@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { Alert } from '@mui/material';
-import axios from 'axios';
 import { LoggedInContext } from '../LoggedInContext';
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 
 const CreateChatRoom = () => {
     const [newRoom, setNewRoom] = useState<string|undefined>();
@@ -44,10 +43,10 @@ const CreateChatRoom = () => {
                 autoFocus
                 onChange={handleNewRoomChange}
               />
-              { missingName && (
-                <Alert severity="error">Insert name of new chatroom &#9757;</Alert>
+              {missingName && (
+                <Alert severity="error">The name of the new chatroom cannot be empty &#9757;</Alert>
               )}
-              { exists && (
+              {exists && (
                 <Alert severity="error">This chatroom already exists &#128373;</Alert>
               )}
               <Button
@@ -56,7 +55,7 @@ const CreateChatRoom = () => {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Create chatroom &#9996;
+                Create a chatroom &#9996;
               </Button>
             </Box>
         </div>

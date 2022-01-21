@@ -1,5 +1,4 @@
 import React, { useState, createContext } from 'react';
-import ChatRoom from './ChatComponents/ChatRoom';
 
 interface LoggedInContextInterface {
     isLoggedIn: boolean;
@@ -15,7 +14,7 @@ const LoggedInDefaultValues: LoggedInContextInterface = {
     setIsLoggedIn: isLoggedIn => isLoggedIn,
     userName: "",
     setUserName: userName => userName,
-    chatRooms: ["Chatroom1", "Chatroom2"],
+    chatRooms: [],
     setChatRooms: ChatRooms => ChatRooms
  }
 

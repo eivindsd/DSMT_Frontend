@@ -13,7 +13,6 @@ import { Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { Alert } from '@mui/material';
 
-
 const ChatRoom = () => {
     let {name} = useParams();
     const [message, setMessage] = useState<string|undefined>();
@@ -39,7 +38,10 @@ const ChatRoom = () => {
     return (
         <div>
             <Header />
-            <Typography style={{fontSize: "50px", fontFamily: "'Indie Flower', cursive", textAlign: "center"}}>&#128075; {name} &#128172;</Typography>
+            <Typography 
+                style={{fontSize: "50px", fontFamily: "'Indie Flower', cursive", textAlign: "center"}}>
+                    &#128075; {name} &#128172;
+            </Typography>
             <Divider style={{marginTop: "1vw"}}/>
             <Box style={{height: "300px",}}>
                 <List sx={{
@@ -53,7 +55,7 @@ const ChatRoom = () => {
                     {messages && messages.map((message)=> (
                         <Stack direction="row" style={{marginTop: "1vw", marginLeft: "1vw"}}>
                             <Chip 
-                                avatar={<Avatar>{userName?.charAt(0)}</Avatar>} 
+                                avatar={<Avatar style={{fontFamily: "'Swanky and Moo Moo', cursive", fontSize: "18px"}}>{userName?.charAt(0)}</Avatar>} 
                                 label={message} color="primary" 
                                 style={{fontFamily: "'Itim', cursive"}}></Chip>
                         </Stack>

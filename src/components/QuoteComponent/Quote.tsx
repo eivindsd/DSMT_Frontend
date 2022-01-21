@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -22,7 +21,6 @@ const Quote = () => {
 
     const getQuote = async () => {
         setQuote(await (await axios.get("https://api.quotable.io/random")).data);
-        console.log(await (await axios.get("https://api.quotable.io/random")).data);
     }
     
     return (
@@ -32,10 +30,10 @@ const Quote = () => {
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     Quote of the Day
                     </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.primary">
+                    <Typography sx={{ mb: 1.5 }} color="text.primary" style={{fontFamily: "'Permanent Marker', cursive", fontSize: "20px"}}>
                     {quote?.author}
                     </Typography>
-                    <Typography variant="body2">
+                    <Typography variant="body2" style={{fontFamily: "'Special Elite', cursive", fontSize: "15px"}}>
                     {quote?.content}
                     </Typography>
                 </CardContent>
