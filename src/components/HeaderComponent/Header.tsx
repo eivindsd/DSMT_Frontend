@@ -6,9 +6,20 @@ import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
 
 const Header = () => {
-    const { setIsLoggedIn, userName} = useContext(LoggedInContext);
+    const { setIsLoggedIn, userName, setChatRooms} = useContext(LoggedInContext);
+
+    const getRooms = async () => {
+        setChatRooms(await (await axios.get("http://localhost:8080/api/rooms")).data);
+        await axios.get("http://localhost:8080/api/exitroom");
+      }
+
+      const leaveRoom = async () => {
+        await axios.get("http://localhost:8080/api/exitroom");
+      }
      
     return (
         <div>
@@ -16,14 +27,14 @@ const Header = () => {
                 <AppBar position="static" >
                     <Toolbar>
                         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }} style={{fontFamily: "'Fontdiner Swanky', cursive"}}>
-                             <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>ChatApp</Link>
+                             <Link to="/" onClick={getRooms} style={{ textDecoration: 'none', color: 'white' }}>ChatApp</Link>
                         </Typography>
                         <Typography  variant="h5" component="div" sx={{ flexGrow: 1 }} style={{fontFamily: "'Swanky and Moo Moo', cursive", fontSize: "30px"}}>
                             &#128123; - {userName}
                         </Typography>
                         <Button 
                             color="inherit" 
-                            onClick={() => {setIsLoggedIn(false)}}>
+                            onClick={() => {setIsLoggedIn(false); leaveRoom();}}>
                                 <Link 
                                     to={`/`} 
                                     style={{ textDecoration: 'none', color: 'white', fontFamily: "'Orbitron', sans-serif" }}>

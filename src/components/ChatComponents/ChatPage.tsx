@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Header from '../HeaderComponent/Header';
 import { Button} from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -7,11 +7,19 @@ import CreateChatRoom from './CreateChatRoom';
 import { LoggedInContext } from '../LoggedInContext';
 import LoveCalculator from "../LoveCalculatorComponent/LoveCalculator";
 import { Divider } from '@material-ui/core';
+import axios from 'axios';
 
 const ChatPage = () => {
 
-    const {chatRooms} = useContext(LoggedInContext);
+    const {chatRooms, setChatRooms} = useContext(LoggedInContext);
 
+    useEffect(() => {
+        const getRooms = async () => {
+          setChatRooms(await (await axios.get("http://localhost:8080/api/rooms")).data);
+        }
+        getRooms();
+      }, []); 
+    
     return (
         <div>
             <Header />
@@ -28,7 +36,7 @@ const ChatPage = () => {
             <Divider style={{marginTop: "2vw"}}/>
             <Quote />
             <Divider style={{marginTop: "2vw"}}/>
-            <LoveCalculator />
+            {/* <LoveCalculator /> */}
         </div>
     );
 };
