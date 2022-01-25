@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import { Alert } from '@mui/material';
 import { LoggedInContext } from '../LoggedInContext';
 import { Button } from '@mui/material';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const CreateChatRoom = () => {
     const [newRoom, setNewRoom] = useState<string|undefined>();
@@ -15,10 +17,18 @@ const CreateChatRoom = () => {
         setNewRoom(e.currentTarget.value);
       };
 
-      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault();
           if(newRoom && !chatRooms.includes(newRoom)) {
-            setChatRooms([...chatRooms, newRoom]);
+            await axios.post("http://localhost:8080/api/rooms", {
+              room: newRoom
+            }).then(
+              async function(response) {
+                if(response.status === 201) {
+                  setChatRooms(await (await axios.get("http://localhost:8080/api/rooms")).data)
+                }
+              }
+            )
             setMissingName(false);
             setExists(false);
           }
@@ -49,14 +59,9 @@ const CreateChatRoom = () => {
               {exists && (
                 <Alert severity="error">This chatroom already exists &#128373;</Alert>
               )}
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Create a chatroom &#9996;
-              </Button>
+                <Link to={`/chatroom/${newRoom}`} style={{ textDecoration: 'none', color: "blue"}}>
+                        Create and join chatroom
+                </Link>
             </Box>
         </div>
     );

@@ -12,6 +12,7 @@ import { useState } from 'react';
 import ChatPage from "../ChatComponents/ChatPage";
 import { LoggedInContext } from "../LoggedInContext";
 import { Alert } from '@mui/material';
+import axios from 'axios';
 
 const theme = createTheme();
 
@@ -21,9 +22,12 @@ const Login = () => {
     const [missingName, setMissingName] = useState(false);
     const { isLoggedIn, setIsLoggedIn, setUserName } = React.useContext(LoggedInContext);
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if(name) {
+            await axios.post("http://localhost:8080/api/login", {
+              user: name
+            });
             setIsLoggedIn(true);
             setUserName(name); 
             setMissingName(false);

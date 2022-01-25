@@ -20,7 +20,6 @@ const ChatPage = () => {
         getRooms();
       }, []); 
     
-
     return (
         <div>
             <Header />
@@ -37,7 +36,7 @@ const ChatPage = () => {
             <Divider style={{marginTop: "2vw"}}/>
             <Quote />
             <Divider style={{marginTop: "2vw"}}/>
-            <LoveCalculator />
+            {/* <LoveCalculator /> */}
         </div>
     );
 };
