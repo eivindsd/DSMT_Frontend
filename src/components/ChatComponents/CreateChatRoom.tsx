@@ -59,9 +59,13 @@ const CreateChatRoom = () => {
               {exists && (
                 <Alert severity="error">This chatroom already exists &#128373;</Alert>
               )}
-                <Link to={`/chatroom/${newRoom}`} style={{ textDecoration: 'none', color: "blue"}}>
+              <Button 
+                variant="contained" 
+                style={{marginLeft: "1vw"}}>
+                <Link to={`/chatroom/${newRoom}`} style={{ textDecoration: 'none', color: "white"}}>
                         Create and join chatroom
                 </Link>
+                </Button>
             </Box>
         </div>
     );

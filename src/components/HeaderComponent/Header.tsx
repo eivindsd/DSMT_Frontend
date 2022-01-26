@@ -14,11 +14,6 @@ const Header = () => {
 
     const getRooms = async () => {
         setChatRooms(await (await axios.get("http://localhost:8080/api/rooms")).data);
-        await axios.get("http://localhost:8080/api/exitroom");
-      }
-
-      const leaveRoom = async () => {
-        await axios.get("http://localhost:8080/api/exitroom");
       }
      
     return (
@@ -26,15 +21,15 @@ const Header = () => {
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static" >
                     <Toolbar>
-                        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }} style={{fontFamily: "'Fontdiner Swanky', cursive"}}>
-                             <Link to="/" onClick={getRooms} style={{ textDecoration: 'none', color: 'white' }}>ChatApp</Link>
+                        <Typography variant="h5" onClick={getRooms} component="div" sx={{ flexGrow: 1 }} style={{fontFamily: "'Fontdiner Swanky', cursive", cursor: "pointer"}}>
+                             ChatApp
                         </Typography>
                         <Typography  variant="h5" component="div" sx={{ flexGrow: 1 }} style={{fontFamily: "'Swanky and Moo Moo', cursive", fontSize: "30px"}}>
                             &#128123; - {userName}
                         </Typography>
                         <Button 
                             color="inherit" 
-                            onClick={() => {setIsLoggedIn(false); leaveRoom();}}>
+                            onClick={() => setIsLoggedIn(false)}>
                                 <Link 
                                     to={`/`} 
                                     style={{ textDecoration: 'none', color: 'white', fontFamily: "'Orbitron', sans-serif" }}>

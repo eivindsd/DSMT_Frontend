@@ -25,10 +25,8 @@ const ChatRoom = () => {
     let {name} = useParams();
     const [message, setMessage] = useState<string|undefined>();
     const [messages, setMessages] = useState<(string|undefined)[]>([]);
-    const [messageObjects, setMessageObjects] = useState<Message>();
     const [emptyMessage, setEmptyMessage] = useState<boolean>(false);
     const [users, setUsers] = useState<(string|undefined)[]>([]);
-    const {userName} = useContext(LoggedInContext);
 
     useEffect(() => {
         const getUsersAndMessages = async () => {
@@ -72,7 +70,11 @@ const ChatRoom = () => {
                 style={{fontSize: "50px", fontFamily: "'Indie Flower', cursive", textAlign: "center"}}>
                     &#128075; {name} &#128172;  
             </Typography>
-            <Link to="/" onClick={leaveRoom} style={{ textDecoration: 'none', color: 'blue', marginLeft: "90%" }}>Exit room</Link>
+            <Button 
+                variant="contained" 
+                style={{marginLeft: "90%"}}>
+                <Link to="/" onClick={leaveRoom} style={{ textDecoration: 'none', color: 'white'}}>Exit room</Link>
+            </Button>
             <Divider style={{marginTop: "1vw"}}/>
             <Box style={{height: "300px", display: 'flex', flexDirection: 'row'}}>
             <List style={{width: "25%"}} 
@@ -110,7 +112,7 @@ const ChatRoom = () => {
                     {messages && messages.map((message)=> (
                         <Stack direction="row" style={{marginTop: "1vw", marginLeft: "1vw"}}>
                             <Chip 
-                                avatar={<Avatar style={{fontFamily: "'Swanky and Moo Moo', cursive", fontSize: "18px"}}>{userName?.charAt(0)}</Avatar>} 
+                                //avatar={<Avatar style={{fontFamily: "'Swanky and Moo Moo', cursive", fontSize: "18px"}}>{userName?.charAt(0)}</Avatar>} 
                                 label={message} color="primary" 
                                 style={{fontFamily: "'Itim', cursive"}}></Chip>
                         </Stack>
