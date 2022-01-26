@@ -17,14 +17,15 @@ import ListSubheader from '@mui/material/ListSubheader';
 import { Link } from "react-router-dom";
 
 interface Message {
-    user: string;
+    name: string;
     message: string;
 }
 
 const ChatRoom = () => {
+    const {userName} = useContext(LoggedInContext);
     let {name} = useParams();
     const [message, setMessage] = useState<string|undefined>();
-    const [messages, setMessages] = useState<(string|undefined)[]>([]);
+    const [messages, setMessages] = useState<(Message|undefined)[]>([]);
     const [emptyMessage, setEmptyMessage] = useState<boolean>(false);
     const [users, setUsers] = useState<(string|undefined)[]>([]);
 
@@ -47,7 +48,7 @@ const ChatRoom = () => {
             await axios.post("http://localhost:8080/api/sendmessage", {
                 message: message
             });
-            setMessages([...messages, message])
+            //setMessages([...messages, message])
             setEmptyMessage(false);
         }
         else {
@@ -63,6 +64,17 @@ const ChatRoom = () => {
         await axios.get("http://localhost:8080/api/exitroom");
       }
 
+      const checkIfEqual = (nameOfMesseger: string | undefined) => {
+          console.log("Navnet på avsender " + nameOfMesseger?.substring(1, nameOfMesseger?.length - 1));
+          console.log("Navnet på bruker " + userName);
+        if (nameOfMesseger?.substring(1, nameOfMesseger?.length - 1) === userName) {
+            console.log("Its true")
+            return true;
+        }else {
+            console.log("Its false");
+            return false;
+        }
+      }
     return (
         <div>
             <Header />
@@ -110,10 +122,11 @@ const ChatRoom = () => {
                         }} 
                 >
                     {messages && messages.map((message)=> (
-                        <Stack direction="row" style={{marginTop: "1vw", marginLeft: "1vw"}}>
+                        <Stack direction="row" style={{marginTop: "1vw", marginLeft: "1vw"}}>                        
                             <Chip 
-                                //avatar={<Avatar style={{fontFamily: "'Swanky and Moo Moo', cursive", fontSize: "18px"}}>{userName?.charAt(0)}</Avatar>} 
-                                label={message} color="primary" 
+                                avatar={<Avatar style={{fontFamily: "'Swanky and Moo Moo', cursive", fontSize: "18px"}}>{message?.name?.charAt(1)}</Avatar>} 
+                                label={message?.message.substring(1, message.message.length - 1)} 
+                                color={ checkIfEqual(message?.name) ? "info" : "primary"} 
                                 style={{fontFamily: "'Itim', cursive"}}></Chip>
                         </Stack>
                     ))}
