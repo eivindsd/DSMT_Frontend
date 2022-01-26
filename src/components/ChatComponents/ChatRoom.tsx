@@ -48,7 +48,6 @@ const ChatRoom = () => {
             await axios.post("http://localhost:8080/api/sendmessage", {
                 message: message
             });
-            //setMessages([...messages, message])
             setEmptyMessage(false);
         }
         else {
@@ -65,13 +64,9 @@ const ChatRoom = () => {
       }
 
       const checkIfEqual = (nameOfMesseger: string | undefined) => {
-          console.log("Navnet på avsender " + nameOfMesseger?.substring(1, nameOfMesseger?.length - 1));
-          console.log("Navnet på bruker " + userName);
         if (nameOfMesseger?.substring(1, nameOfMesseger?.length - 1) === userName) {
-            console.log("Its true")
             return true;
         }else {
-            console.log("Its false");
             return false;
         }
       }

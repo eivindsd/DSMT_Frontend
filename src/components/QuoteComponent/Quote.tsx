@@ -12,7 +12,6 @@ interface QuoteInterface  {
 }
 
 const Quote = () => {
-
     const [quote, setQuote] = useState<QuoteInterface>();
 
     useEffect(() => {

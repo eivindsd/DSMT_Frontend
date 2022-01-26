@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Quote from '../QuoteComponent/Quote';
 import CreateChatRoom from './CreateChatRoom';
 import { LoggedInContext } from '../LoggedInContext';
-import LoveCalculator from "../LoveCalculatorComponent/LoveCalculator";
 import { Divider } from '@material-ui/core';
 import axios from 'axios';
 
@@ -36,7 +35,6 @@ const ChatPage = () => {
             <Divider style={{marginTop: "2vw"}}/>
             <Quote />
             <Divider style={{marginTop: "2vw"}}/>
-            {/* <LoveCalculator /> */}
         </div>
     );
 };

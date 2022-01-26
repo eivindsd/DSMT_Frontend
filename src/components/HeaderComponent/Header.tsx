@@ -5,11 +5,12 @@ import { Toolbar } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
 
 
 const Header = () => {
+    let {name} = useParams();
     const { setIsLoggedIn, userName, setChatRooms} = useContext(LoggedInContext);
 
     const getRooms = async () => {
@@ -27,15 +28,17 @@ const Header = () => {
                         <Typography  variant="h5" component="div" sx={{ flexGrow: 1 }} style={{fontFamily: "'Swanky and Moo Moo', cursive", fontSize: "30px"}}>
                             &#128123; - {userName}
                         </Typography>
-                        <Button 
+                        {!name && (
+                            <Button 
                             color="inherit" 
                             onClick={() => setIsLoggedIn(false)}>
                                 <Link 
                                     to={`/`} 
                                     style={{ textDecoration: 'none', color: 'white', fontFamily: "'Orbitron', sans-serif" }}>
-                                        Logout &#128405;
+                                        Logout
                                 </Link>
                         </Button>
+                        )}
                     </Toolbar>
                 </AppBar>
             </Box>

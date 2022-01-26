@@ -12,7 +12,6 @@ function App() {
   useEffect(() => {
   }, [isLoggedIn])
 
-
   return (
     <BrowserRouter>
         <Routes>
