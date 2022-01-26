@@ -62,7 +62,7 @@ const CreateChatRoom = () => {
               <Button 
                 variant="contained" 
                 style={{marginLeft: "1vw"}}>
-                <Link to={`/chatroom/${newRoom}`} style={{ textDecoration: 'none', color: "white"}}>
+                <Link to={newRoom ? `/chatroom/${newRoom}` : "/"} style={{ textDecoration: 'none', color: "white"}}>
                         Create and join chatroom
                 </Link>
                 </Button>
